@@ -68,7 +68,10 @@ function App() {
   // usestate 타입 설정하기 useState<string>(); 필터되어서 보여짐,필터후
   const [allCarriers,setAllCarriers] = useState<Company[]>([]);
   // 모든 데이터 넣어둔걸 유지하고 필터된것은 위에서 국내,국외로 할거임,필터될때
-  const [theme , setTheme] = useState<string>('default');
+  const [theme, setTheme] = useState<string>(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme || "default";
+  });
   // 객체안에 객체가 들어갈거임
 
   const [tcode,setTcode] = useState<string>('04');
@@ -201,6 +204,11 @@ function App() {
 
   const PostListName  : string[] = ["상품인수" , "상품이동중","배송지도착" ,"배송출발" ,"배송완료"]
 
+  const changeTheme = (newTheme: string) => {
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
   return (
    <>
     {
@@ -268,7 +276,7 @@ function App() {
         {
           buttons.map((e,i)=>{
             return(
-              <button onClick={()=>setTheme(e.theme)} key={i} className="mx-1 md:mx-2 xl:mx-3">{e.name}</button>
+              <button onClick={()=> changeTheme(e.theme)} key={i} className="mx-1 md:mx-2 xl:mx-3">{e.name}</button>
             )
           })
         }
