@@ -270,13 +270,13 @@ function App() {
         </div>
     }
     <div className={`p-5 text-black text-sm md:text-xl xl:text-2xl flex justify-between ${themeColor[theme].back}`}>
-      <h3 className="font-extrabold">국내.외 택배조회 시스템</h3>
+      <h3 className="font-extrabold text-white">국내.외 택배조회 시스템</h3>
       <div>
-        <span>테마 : </span>
+        <span className="text-white">테마 : </span>
         {
           buttons.map((e,i)=>{
             return(
-              <button onClick={()=> changeTheme(e.theme)} key={i} className="mx-1 md:mx-2 xl:mx-3">{e.name}</button>
+              <button onClick={()=> changeTheme(e.theme)} key={i} className="mx-1 md:mx-2 xl:mx-3 text-white">{e.name}</button>
             )
           })
         }
@@ -290,7 +290,7 @@ function App() {
       </div>
       {/* {tcode}{tname} */}
       <div className="basis-full py-4 border-b">
-        <select className="w-full border p-2 rounded-md" value={tcode} onChange={(e)=>{
+        <select className="w-full border p-2 rounded-md cursor-pointer" value={tcode} onChange={(e)=>{
           const result_code = e.target.value;
           setTcode(e.target.value);
           const result = carriers.find((e)=> e.Code === result_code);
